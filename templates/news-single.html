@@ -1,0 +1,194 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block content %}
+
+<!-- faq-banner -->
+	<div class="faq">
+			<div class="container">
+				<div class="agileits-news-top">
+					<ol class="breadcrumb">
+					  <li><a href="{% url 'movie:home' %}">Boh sahifa</a></li>
+					   <li><a href="{% url 'movie:posts' %}">Maqolalar</a></li>
+					  <li class="active">{{object.title}}</li>
+					</ol>
+				</div>
+				<div class="agileinfo-news-top-grids">
+					<div class="col-md-8 wthree-top-news-left">
+
+						<div class="wthree-news-left">
+							<div class="wthree-news-left-img">
+								<img src="{{object.image.url}}" height="500" alt="" />
+								<h4>{{object.title}}</h4>
+								<div class="s-author">
+									<p>Posted By <a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{object.author}}</a> &nbsp;&nbsp; <i class="fa fa-calendar" aria-hidden="true"></i> {{object.published}}&nbsp;&nbsp; <a href="#"><i class="fa fa-commets" aria-hidden="true"></i></a></p>
+								</div>
+								<div id="fb-root"></div>
+								<div class="w3-agile-news-text">
+									<p>{{object.body}}</p>
+									<br>
+									<p><h4>Maqola teglari</h4></p>
+									
+									{% for tag in post.tag.all %}
+												
+													<a href="">
+														<span><a href="{{tag.get_absolute_url}}"><button type="button" class="btn btn-outline-warning">{{tag.name}}</button></a></span>
+													</a>
+												
+											{% endfor %}
+									
+										
+								</div>
+							</div>
+						</div>
+						<div class="wthree-related-news-left">
+							<h4>Boshqa Yangiliklar</h4>
+							<div class="wthree-news-top-left">
+								{% for post in latest_posts %}
+									
+								
+								<div class="col-md-6 w3-agileits-news-left">
+									<div class="col-sm-5 wthree-news-img">
+										<a href="{% url 'movie:post_detail' post.slug %}"><img src="{{post.image.url}}" alt="" /></a>
+									</div>
+									<div class="col-sm-7 wthree-news-info">
+										<h5><a href="{% url 'movie:post_detail' post.slug %}">{{post.title}}</a></h5>
+										<p>{{post.body}}</p>
+										<ul>
+											<li><i class="fa fa-clock-o" aria-hidden="true"></i> {{post.published}}</li>
+											<li><i class="fa fa-eye" aria-hidden="true"></i> {{post.view}}</li>
+										</ul>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+								{% endfor %}
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<!-- agile-comments -->
+		
+						<!-- //agile-comments -->
+						<div class="news-related">
+							
+						</div>
+					</div>
+					<div class="col-md-4 wthree-news-right">
+						<!-- news-right-top -->
+						<div class="news-right-top">
+							<div class="wthree-news-right-heading">
+								<h3>Yangi qo'shilganlar</h3>
+							</div>
+							<div class="wthree-news-right-top">
+								<div class="news-grids-bottom">
+									<!-- date -->
+									<div id="design" class="date">
+										<div id="cycler">
+										{% for post in latest_post %}
+										   	
+										    
+											<div class="date-text">
+												<a href="{% url 'movie:post_detail' post.slug %}">{{post.published}}</a>
+												<p>{{post.title}}</p>
+											</div>
+										 {% endfor %} 	
+										</div>
+										<script>
+										function blinker() {
+											$('.blinking').fadeOut(500);
+											$('.blinking').fadeIn(500);
+										}
+										setInterval(blinker, 1000);
+										</script>
+										<script>
+											function cycle($item, $cycler){
+												setTimeout(cycle, 2000, $item.next(), $cycler);
+												
+												$item.slideUp(1000,function(){
+													$item.appendTo($cycler).show();        
+												});
+												}
+											cycle($('#cycler div:first'),  $('#cycler'));
+										</script>
+									</div>
+									<!-- //date -->
+								</div>
+							</div>
+						</div>
+						<!-- //news-right-top -->
+						<!-- news-right-bottom -->
+						<div class="news-right-bottom">
+							<div class="wthree-news-right-heading">
+								<h3>Top Yangiliklar</h3>
+							</div>
+							<div class="news-right-bottom-bg">
+								<div class="news-grids-bottom">
+									{% for post in top_post %}
+										
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="{% url 'movie:post_detail' post.slug %}">{{post.title}}</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> {{post.published}}</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> {{post.author}}</a></li>
+											</ul>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<!-- //news-right-bottom -->
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+				<div class="w3l-latest-movies-grids">
+					<h4 class="latest-text w3_latest_text">So'ngi qo'shilgan filimlar</h4>
+						<div class="container">
+								<!-- /latest-movies -->
+									<div class="browse-inner">
+										{% for m in last_m %}
+											
+										
+								   <div class="col-md-2 w3l-movie-gride-agile">
+											 <a href="{% url 'movie:movie_detail' m.slug %}" class="hvr-shutter-out-horizontal"><img src="{{m.poster.url}}" title="album-name" alt=" " />
+											 <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+										</a>
+										  <div class="mid-1">
+											<div class="w3l-movie-text">
+												<h6><a href="{% url 'movie:movie_detail' m.slug %}">{{m.title}}</a></h6>							
+											</div>
+											<div class="mid-2">
+											
+												<p>{{m.year}}</p>
+												<div class="block-stars">
+													<ul class="w3l-ratings">
+															 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+															 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+															 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+															<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+															 <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+															  
+											
+													</ul>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+												
+										</div>
+										<div class="ribben">
+											<p>Yangi</p>
+										</div>	
+										</div>
+										{% endfor %}
+
+
+												<div class="clearfix"> </div>
+									</div>
+								<!-- //latest-movies -->
+								 
+						   </div>
+			</div>
+	</div>
+{% endblock %}

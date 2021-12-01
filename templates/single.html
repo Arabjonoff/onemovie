@@ -1,0 +1,155 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block content %}
+	
+
+
+
+<!-- single -->
+<div class="single-page-agile-main">
+<div class="container">
+		<!-- /w3l-medile-movies-grids -->
+			<div class="agileits-single-top">
+				<ol class="breadcrumb">
+				  <li><a href="{% url 'movie:home' %}">Bosh sahifa</a></li>
+				  <li class="active">Kinolar</li>
+				  <li class="active">{{object.title}}</li>
+				</ol>
+			</div>
+			<div class="single-page-agile-info">
+                   <!-- /movie-browse-agile -->
+                 <div class="show-top-grids-w3lagile">
+                 	                 	<div class="row">
+                 		<div class="col-lg-4 col-sm-12">
+                 			<img src="{{object.poster.url}}" width="250" height="400" title="album-name" class="img-responsive" alt=" " />
+                 		</div>
+                 		<div class="col-lg-8 col-sm-12">
+                 		<table bgcolor="red"  class="table">
+  <thead>
+<h2 class="">{{object.title}}</h2>
+  </thead>
+  <tbody>
+    <tr class="">
+     
+      <td><strong>Nomi</strong></td>
+      <td><strong>{{object.title}}</strong></td>
+    </tr>
+     <tr class="">
+      <td><strong>Davlati</strong></td>
+      <td><strong>{{object.country}}</strong></td>
+    </tr>
+     <tr class="">
+      <td><strong>Sanasi</strong></td>
+      <td><strong>{{object.year}}</strong></td>
+    </tr>
+         <tr class="">
+      <td><strong>Aktiyor</strong></td>
+      <td><strong>{{object.actors}}</strong></td>
+    </tr>     <tr class="">
+      <td><strong>Rejiessor</strong></td>
+      <td><strong>{{object.director}}</strong></td>
+    </tr>     <tr class="">
+      <td><strong>Reyting</strong></td>
+      <td><strong>{{object.rating}}</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+								
+
+                 		</div>
+
+                 	</div><br><br>	
+				<div class="col-sm-8 single-left">
+					<div class="song">
+						<div class="video-grid-single-page-agileits">
+						
+						</div>
+						<div class="trailer">
+							<iframe width="660" height="315" src="https://www.youtube.com/embed/{{object.trailer_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="song-grid-right">
+						<div class="share">
+							<h5>Share this</h5>
+							<div class="single-agile-shar-buttons">
+
+						</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 single-right">
+					<h3>Tasodifiy filimlar</h3>
+					<div class="single-grid-right">
+						{% for movie in movies %}
+							
+						<div class="single-right-grids">
+							<div class="col-md-4 single-right-grid-left">
+								<a href="{% url 'movie:movie_detail' movie.slug %}"><img src="{{movie.poster.url}}" alt="" /></a>
+							</div>
+							<div class="col-md-8 single-right-grid-right">
+								<a href="{% url 'movie:movie_detail' movie.slug %}" class="title">{{movie.title}}</a>
+								<p class="author"><a href="#" class="author">{{movie.director}}</a></p>
+								<p class="views">{{movie.year}}</p>
+								<p class="views">{{movie.genre}}</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					{% endfor %}
+
+
+					</div>
+				</div>
+				
+
+				
+				<div class="clearfix"> </div>
+			</div>
+				<!-- //movie-browse-agile -->
+				<!--body wrapper start-->
+			<div class="w3_agile_banner_bottom_grid">
+				<div id="owl-demo" class="owl-carousel owl-theme">
+					{% for lasts in last_m %}
+						<div class="item">
+						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+							<a href="{% url 'movie:movie_detail' lasts.slug %}" class="hvr-shutter-out-horizontal"><img src="{{lasts.poster.url}}" title="album-name" class="img-responsive" alt=" " />
+								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{% url 'movie:movie_detail' lasts.slug %}">{{lasts.title}}</a></h6>							
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{lasts.year}}</p>
+									<div class="block-stars">
+										<ul class="w3l-ratings">
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="ribben">
+								<p>Yangi</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					
+				</div>
+			</div>
+		<!--body wrapper end-->
+						
+							 
+				</div>
+				<!-- //w3l-latest-movies-grids -->
+			</div>	
+		</div>
+	<!-- //w3l-medile-movies-grids -->
+	
+{% endblock %}

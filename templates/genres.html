@@ -1,0 +1,76 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block content %}
+
+<!-- /w3l-medile-movies-grids -->
+	<div class="general-agileits-w3l">
+		<div class="w3l-medile-movies-grids">
+
+				<!-- /movie-browse-agile -->
+				
+				      <div class="movie-browse-agile">
+					     <!--/browse-agile-w3ls -->
+						<div class="browse-agile-w3ls general-w3ls">
+								<div class="tittle-head">
+									<h4 class="latest-text">Barcha filimlar </h4>
+									<div class="container">
+										<div class="agileits-single-top">
+											<ol class="breadcrumb">
+											  <li><a href="{% url 'movie:home' %}">Bosh sahifa</a></li>
+											  
+											  	<li class="active">Janrlar</li>
+											  
+											  
+											</ol>
+										</div>
+									</div>
+								</div>
+								     <div class="container">
+							<div class="browse-inner">{% for m in movie  %}
+								
+						
+							   <div class="col-md-2 w3l-movie-gride-agile">
+										 <a href="{% url 'movie:movie_detail' m.slug %}" class="hvr-shutter-out-horizontal"><img src="{{m.poster.url}}" title="album-name" alt=" " />
+									     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+									</a>
+									  <div class="mid-1">
+										<div class="w3l-movie-text">
+											<h6><a href="{% url 'movie:movie_detail' m.slug %}">{{m.title}}</a></h6>							
+										</div>
+										<div class="mid-2">
+										
+											<p>{{m.year}}</p>
+											<div class="block-stars">
+												<ul class="w3l-ratings">
+													     <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														 <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														 <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+														  
+										
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+											
+									</div>
+							 	    <div class="ribben two">
+										<p>NEW</p>
+									</div>	
+									</div>
+										{% endfor %}
+
+								
+
+					</div>
+				</div>
+			</div>
+						<!--body wrapper end-->
+					</div>	
+			</div>	
+		</div>
+	<!-- //w3l-medile-movies-grids -->
+	</div>
+	<!-- //comedy-w3l-agileits -->
+{% endblock %}

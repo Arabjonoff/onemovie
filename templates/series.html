@@ -1,0 +1,118 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block content %}
+
+<!-- //nav -->
+<div class="general_social_icons">
+	<nav class="social">
+		<ul>
+			<li class="w3_twitter"><a href="#">Twitter <i class="fa fa-twitter"></i></a></li>
+			<li class="w3_facebook"><a href="#">Facebook <i class="fa fa-facebook"></i></a></li>
+			<li class="w3_dribbble"><a href="#">Dribbble <i class="fa fa-dribbble"></i></a></li>
+			<li class="w3_g_plus"><a href="#">Google+ <i class="fa fa-google-plus"></i></a></li>				  
+		</ul>
+  </nav>
+</div>
+	<div class="faq">
+<!-- general -->
+	<div class="general_agileits_genres">
+		<h4 class="latest-text w3_latest_text">Barcha Multfilimlar</h4>
+		<div class="container">
+            <div class="agileits-single-top">
+				<ol class="breadcrumb">
+				  <li><a href="{% url 'movie:home' %}">Bosh sahifa</a></li>
+				  <li class="active">Multiklar</li>
+				</ol>
+			</div>
+		</div>
+		<div class="container">
+			<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+				<div id="myTabContent" class="tab-content">
+					<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+						<div class="w3_agile_featured_movies">
+							{% for mu in multik %}
+								
+							
+							<div class="col-md-2 w3l-movie-gride-agile">
+								<a href="{% url 'movie:mult_detail' mu.slug %}" class="hvr-shutter-out-horizontal"><img src="{{mu.poster.url}}" title="album-name" class="img-responsive" alt=" " />
+									<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+								</a>
+								<div class="mid-1 agileits_w3layouts_mid_1_home">
+									<div class="w3l-movie-text">
+										<h6><a href="{% url 'movie:mult_detail' mu.slug %}">{{mu.title}}</a></h6>							
+									</div>
+									<div class="mid-2 agile_mid_2_home">
+										<p>2016</p>
+										<div class="block-stars">
+											<ul class="w3l-ratings">
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="ribben">
+									<p>NEW</p>
+								</div>
+							</div>
+					{% endfor %}
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--body wrapper start-->
+	<div class="review-slider">
+		 <h4 class="latest-text">So'ngi qo'shilgan filimlar</h4>
+			   <div class="container">
+				<div class="w3_agile_banner_bottom_grid">
+					<div id="owl-demo" class="owl-carousel owl-theme">
+						{% for m in post %}
+							
+						
+						<div class="item">
+							<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+								<a href="{% url 'movie:movie_detail' m.slug %}" class="hvr-shutter-out-horizontal"><img src="{{m.poster.url}}" title="{{m.title}}" class="img-responsive" alt=" " />
+									<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+								</a>
+								<div class="mid-1 agileits_w3layouts_mid_1_home">
+									<div class="w3l-movie-text">
+										<h6><a href="{% url 'movie:movie_detail' m.slug %}">{{m.title}}</a></h6>							
+									</div>
+									<div class="mid-2 agile_mid_2_home">
+										<p>{{m.year}}</p>
+										<div class="block-stars">
+											<ul class="w3l-ratings">
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+												<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="ribben">
+									<p>Yangi</p>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+	
+					</div>
+				</div>
+		<!--body wrapper end-->
+	</div>	
+<!-- //general -->
+	</div>
+	</div>
+<!-- footer -->
+	
+{% endblock content %}
